@@ -71,14 +71,8 @@ function selectAnswer(e) {
         startButton.classList.remove('hide')
        
     }
-  //2. if the answer is correct
-  if (correct) {
-    countRightAnswers++; //+1
-  }
-
-  //5. to show the score inside <span>
-  document.getElementById('right-answers').innerHTML = countRightAnswers; 
   
+
   //prevent multiclicking 
   document.getElementById('answer-buttons').classList.add('no-click'); 
 
@@ -118,5 +112,33 @@ const questions = [
         {text: 'Russia, Mexico, Canada', correct: false},
         {text: 'Germany, Italy, Japan', correct: true},
     ]
-    }
+    },
+    {
+        question: 'What two countries were already involved in a military conflict before the beginning of World War II ?',
+        answers: [
+            {text: 'Japan & China', correct: true},
+            {text: 'Japan & India', correct: false},
+            {text: 'Germany & Poland', correct: false},
+            {text: 'Germany & France', correct: false,}
+        ]
+        },
+     {
+            question: 'After World War II, Germany was divided into how many zones of occupation?',
+            answers: [
+                {text: '3', correct: false},
+                {text: '2', correct: false},
+                {text: '4', correct: true},
+                {text: '12', correct: false,}
+            ]
+     },
+     {
+        question: 'What English code breaker created a machine that helped to decrypt Nazi messages?',
+        answers: [
+            {text: 'Charles Darwin', correct: false},
+            {text: 'Alan Turing', correct: true},
+            {text: 'Charles Babbage', correct: false},
+            {text: 'Winston Churchill', correct: false},
+        ]
+        },
+        
 ]
