@@ -7,7 +7,12 @@ const answerButtonsElement = document.getElementById('answer-buttons')
 
 let shuffledQuestions, currentQuestionIndex
 
+let countRightAnswers= 0;
 startButton.addEventListener('click', startGame)
+nextButton.addEventListener('click', () => {
+    currentQuestionIndex++
+    setNextQuestion()
+})
 
 
 function startGame() {
@@ -16,6 +21,7 @@ function startGame() {
     currentQuestionIndex = 0
     questionContainerElement.classList.remove('hide')
     setNextQuestion()
+    countRightAnswers = 0; // to reset the counter after the test started
 }
 
 function setNextQuestion() {
@@ -40,11 +46,13 @@ function showQuestion(question) {
 }
 
 function resetState() {
+    clearStatusClass(document.body)
     nextButton.classList.add('hide')
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild
         (answerButtonsElement.firstChild)
     }
+
 }
 
 function selectAnswer(e) {
@@ -54,7 +62,23 @@ function selectAnswer(e) {
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct )
     })
+    if(shuffledQuestions.length > currentQuestionIndex + 1){
     nextButton.classList.remove('hide')
+    } else {
+        startButton.innerText  = 'Restart'
+        startButton.classList.remove('hide')
+    }
+  //2. if the answer is correct
+  if (correct) {
+    countRightAnswers++; //+1
+  }
+
+  //5. to show the score inside <span>
+  document.getElementById('right-answers').innerHTML = countRightAnswers; 
+  document.getElementById('answers-percent').innerHTML = ((100 * countRightAnswers)/questions.length).toFixed(0);
+  //prevent multiclicking 
+  document.getElementById('answer-buttons').classList.add('no-click'); 
+
 }
 
 function setStatusClass(element, correct) {
@@ -80,5 +104,14 @@ const questions = [
             {text: '22', correct: false},
             
         ]
+       
+    },
+    {
+    question: 'What is 4 + 2 ?',
+    answers: [
+        {text: '6', correct: true},
+        {text: '8', correct: false},
+        
+    ]
     }
 ]
