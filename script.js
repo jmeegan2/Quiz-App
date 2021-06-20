@@ -7,7 +7,7 @@ const answerButtonsElement = document.getElementById('answer-buttons')
 
 let shuffledQuestions, currentQuestionIndex
 
-let countRightAnswers= 0;
+
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
     currentQuestionIndex++
@@ -16,7 +16,7 @@ nextButton.addEventListener('click', () => {
 
 
 function startGame() {
-    countRightAnswers = 0; // to reset the counter after the test started
+    
     startButton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
@@ -101,20 +101,22 @@ function clearStatusClass(element) {
 
 const questions = [
     {
-        question: 'What is 2 + 2 ?',
+        question: 'After what event did the United States enter WW2 ?',
         answers: [
-            {text: '4', correct: true},
-            {text: '22', correct: false},
-            
+            {text: 'Invasion of Poland', correct: false},
+            {text: '"The Blitz" bombing campaign', correct: false},
+            {text: 'Bombing of Pearl Harbor', correct: true},
+            {text: 'Invasion of France', correct: false},
         ]
        
     },
     {
-    question: 'What is 4 + 2 ?',
+    question: 'The three main partners in the Axis alliance during WW2 ?',
     answers: [
-        {text: '6', correct: true},
-        {text: '8', correct: false},
-        
+        {text: 'France, United Kingdom, United States', correct: false},
+        {text: 'Ireland, United Kingdom, Brazil', correct: false},
+        {text: 'Russia, Mexico, Canada', correct: false},
+        {text: 'Germany, Italy, Japan', correct: true},
     ]
     }
 ]
