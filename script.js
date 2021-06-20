@@ -16,12 +16,13 @@ nextButton.addEventListener('click', () => {
 
 
 function startGame() {
+    countRightAnswers = 0; // to reset the counter after the test started
     startButton.classList.add('hide')
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     questionContainerElement.classList.remove('hide')
     setNextQuestion()
-    countRightAnswers = 0; // to reset the counter after the test started
+    
 }
 
 function setNextQuestion() {
@@ -46,6 +47,7 @@ function showQuestion(question) {
 }
 
 function resetState() {
+
     clearStatusClass(document.body)
     nextButton.classList.add('hide')
     while (answerButtonsElement.firstChild) {
@@ -65,8 +67,9 @@ function selectAnswer(e) {
     if(shuffledQuestions.length > currentQuestionIndex + 1){
     nextButton.classList.remove('hide')
     } else {
-        startButton.innerText  = 'Restart'
+        startButton.innerText  = 'Restart' 
         startButton.classList.remove('hide')
+       
     }
   //2. if the answer is correct
   if (correct) {
@@ -75,7 +78,7 @@ function selectAnswer(e) {
 
   //5. to show the score inside <span>
   document.getElementById('right-answers').innerHTML = countRightAnswers; 
-  document.getElementById('answers-percent').innerHTML = ((100 * countRightAnswers)/questions.length).toFixed(0);
+  
   //prevent multiclicking 
   document.getElementById('answer-buttons').classList.add('no-click'); 
 
